@@ -455,7 +455,7 @@ function sortCitiesArray(arr) {
       if(a.country > b.country) { return 1; }
    });
    return arr.sort((a, b) => {
-      if (a.country == b.country)
+      if (a.country === b.country)
       if(a.city < b.city) { return -1; }
       if(a.city > b.city) { return 1; }
    });
@@ -574,7 +574,9 @@ function group(array, keySelector, valueSelector) {
       return result;
    }, new Map());
 }
-
+function flattenDeep(arr1) {
+   return arr1.reduce((acc, val) => Array.isArray(val) ? acc.concat(flattenDeep(val)) : acc.concat(val), []);
+}
 
 /**
  * Projects each element of the specified array to a sequence and flattens the resulting sequences into one array.
@@ -588,7 +590,7 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-   return arr.map((el) => childrenSelector(el)).flat(Infinity);
+   return flattenDeep(arr.map((el) => childrenSelector(el)));
 }
 
 
@@ -606,7 +608,7 @@ function selectMany(arr, childrenSelector) {
  */
 function getElementByIndexes(arr, indexes) {
    const summedIndex = indexes.reduce((result, el) => result + el, 0);
-   return arr.flat(indexes.length)[summedIndex];
+   return flattenDeep(arr)[summedIndex];
 }
 
 
