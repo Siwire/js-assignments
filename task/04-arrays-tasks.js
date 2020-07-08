@@ -453,13 +453,12 @@ function sortCitiesArray(arr) {
    arr.sort((a, b) => {
       if(a.country < b.country) { return -1; }
       if(a.country > b.country) { return 1; }
-      
-   },)
+   });
    return arr.sort((a, b) => {
       if (a.country == b.country)
       if(a.city < b.city) { return -1; }
       if(a.city > b.city) { return 1; }
-   },)
+   });
 }
 
 /**
@@ -501,14 +500,14 @@ function getIdentityMatrix(n) {
  *     3, 3   => [ 3 ]
  */
 function getIntervalArray(start, end) {
-   let arr = Array(end - start + 1)
-   arr.fill(start) 
+   let arr = Array(end - start + 1);
+   arr.fill(start);
    return arr.map((elem, index) => {
       if (index == 0) {
-         return elem
+         return elem;
       }
       else {
-         return elem+=index
+         return elem += index;
       }
    })
 }
